@@ -27,8 +27,9 @@
               }
             ],
             "styles": [
-              "src/styles.css",
-              "./node_modules/bootstrap/dict/css/bootstrap.min.css"
+               "./node_modules/bootstrap/dict/css/bootstrap.min.css",
+              "src/styles.css"
+             
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -98,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "b5b82826-a85d-45fb-a15b-467c5c8507b0"
   }
 }

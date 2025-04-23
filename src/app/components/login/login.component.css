@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: url('bg.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  width: 80%;
+  max-width: 1000px;
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  overflow: hidden;
+  color: #fff;
+}
+
+.login-form, .login-welcome {
+  flex: 1;
+  padding: 40px;
+}
+
+.login-form {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.login-form h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.login-form input::placeholder {
+  color: #ccc;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.checkbox-container input {
+  margin-right: 8px;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  /* background: #fff; */
+  color: #000;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* .login-form button:hover {
+  background: #f0f0f0; 
+} */
+
+.login-welcome h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.login-welcome p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ddd;
+}

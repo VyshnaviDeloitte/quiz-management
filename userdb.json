@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "vyshnavi@gmail.com",
+      "password": "vyshnavi",
+      "role": "student"
+    },
+    {
+      "id": "2",
+      "email": "gayathri@gmail.com",
+      "password": "gayathri",
+      "role": "admin"
+    },
+    {
+      "id": "80a6",
+      "email": "laxmi@gmail.com",
+      "password": "laxmi",
+      "role": "student"
+    },
+    {
+      "id": "e24b",
+      "email": "laxmi@gmail.com",
+      "password": "laxmi",
+      "role": "student"
+    },
+    {
+      "id": "6517",
+      "email": "laxmi@gmail.com",
+      "password": "laxmi",
+      "checkbox": true,
+      "role": "student"
+    }
+  ]
+}

@@ -1,1 +1,58 @@
-<p>signup works!</p>
+
+<div class="login-wrapper">
+    <div class="login-container">
+      <div class="login-form">
+        <h1>Quiz Management System</h1>
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+          <input formControlName="email" type="text" placeholder="Email" />
+          @if(signUpForm.controls['email'].touched)
+          {
+              <div class="text-danger">
+                @if(signUpForm.controls['email'].errors?.['required'])
+                {
+                   <span style="color:red">This is required</span>
+                }
+                @if(signUpForm.controls['email'].errors?.['email'])
+                {
+                   <span style="color:red">Pls enter email</span>
+                }
+              </div>
+          }
+          <input formControlName="password"  type="password" placeholder="Password" />
+          @if(signUpForm.controls['password'].touched)
+          {
+              <div class="text-danger">
+                @if(signUpForm.controls['password'].errors?.['required'])
+                {
+                   <span style="color:red">This is required</span>
+                }
+                @if(signUpForm.controls['password'].errors?.['minlength'])
+                {
+                   <span style="color:red">Minimum 5 characters are required</span>
+                }
+              </div>
+          }
+          <label class="checkbox-container">
+            <input type="checkbox" formControlName="checkbox" />
+            <span>I agree all the terms and conditions using this tool</span>
+            @if(signUpForm.controls['checkbox'].touched)
+            {
+              @if(signUpForm.controls['checkbox'].errors?.['required'])
+              {
+                 <span style="color:red">This is Mandatory to accept</span>
+              }
+            }
+          </label>
+          <button type="submit" [disabled]="signUpForm.invalid">SignUp</button>
+        </form>
+      </div>
+      <div class="login-welcome">
+        <h2>Welcome,</h2>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </p>
+      </div>
+    </div>
+  </div>

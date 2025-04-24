@@ -35,7 +35,7 @@
             <input type="checkbox" formControlName="checkbox" />
             
             <span>I agree all the terms and conditions using this tool</span>
-            @if(loginForm.controls['password'].touched)
+            @if(loginForm.controls['checkbox'].touched)
             {
               @if(loginForm.controls['checkbox'].errors?.['required'])
               {

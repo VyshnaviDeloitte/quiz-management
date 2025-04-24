@@ -26,6 +26,14 @@ export class SignupComponent {
     }
     onSubmit()
     {
+
+         //checking if user already exists '
+         const { email, password } = this.signUpForm.value;
+         this.http.get<any[]>(`http://localhost:3000/users?email=${email}&password=${password}`).subscribe(users => {
+          if (users.length) {
+            alert('User Already Exists , Try Logging In!');
+          } 
+        });
          const formData=this.signUpForm.value;
          //initially adding user as student
          const newUser={...formData,role:'student'};

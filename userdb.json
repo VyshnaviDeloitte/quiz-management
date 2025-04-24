@@ -30,6 +30,13 @@
       "password": "laxmi",
       "checkbox": true,
       "role": "student"
+    },
+    {
+      "id": "fb7e",
+      "email": "vyshnavi@gmail.com",
+      "password": "vyshnavi",
+      "checkbox": true,
+      "role": "student"
     }
   ]
 }

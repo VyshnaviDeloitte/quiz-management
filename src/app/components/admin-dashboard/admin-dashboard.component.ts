@@ -28,6 +28,7 @@ export class AdminDashboardComponent {
         startDate: ['', Validators.required],
   endDate: ['', Validators.required],
   attachedFile: [''],
+  enrolled:0
       });
     }
   

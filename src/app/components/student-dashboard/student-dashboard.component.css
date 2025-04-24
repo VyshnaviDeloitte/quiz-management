@@ -1,0 +1,246 @@
+.layout-container {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 60px;
+    background-color: #f4f7fb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+  }
+  
+  .sidebar-nav .icon {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    margin: 1.2rem 0;
+    cursor: pointer;
+    opacity: 0.6;
+  }
+  
+  .sidebar-nav .icon.active {
+    opacity: 1;
+    font-weight: bold;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #eaf4f8;
+  }
+  
+  /* Topbar */
+  .topbar {
+    background: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .logo-text {
+    color: #3ea46d;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  
+  .search-box {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 300px;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+  
+  /* Dashboard */
+  .dashboard {
+    padding: 2rem;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .tab {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+  }
+  
+  .tab.active {
+    border-color: #3e8ed0;
+    font-weight: bold;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .filters select {
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Cards */
+  .exam-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .exam-card {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .exam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .tag {
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  
+  .tag.Low-stakes {
+    background-color: #e1fbe1;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+  }
+  
+  .tag.Medium {
+    background-color: #fff8e1;
+    color: #f9a825;
+    border: 1px solid #fbc02d;
+  }
+  
+  .tag.High-stakes {
+    background-color: #fdecea;
+    color: #d32f2f;
+    border: 1px solid #ef9a9a;
+  }
+  
+  .exam-info p {
+    margin: 0.4rem 0;
+    font-size: 0.9rem;
+  }
+  
+  .start-btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #0056b3;
+    background: none;
+    color: #0056b3;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .start-btn:hover {
+    background-color: #e0f0ff;
+  }
+
+
+  .exam-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .exam-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .exam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .exam-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .tag {
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .tag.high {
+    background-color: #dc3545; /* red */
+  }
+  
+  .tag.medium {
+    background-color: #ffc107; /* yellow */
+    color: #000;
+  }
+  
+  .tag.easy {
+    background-color: #28a745; /* green */
+  }
+  
+  .exam-info p {
+    margin: 4px 0;
+    color: #333;
+    font-size: 0.9rem;
+  }
+  
+  .start-btn {
+    margin-top: 1rem;
+    padding: 8px 16px;
+    border: none;
+    background-color: #6f42c1;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

@@ -4,7 +4,13 @@
       "id": "1",
       "email": "vyshnavi@gmail.com",
       "password": "vyshnavi",
-      "role": "student"
+      "role": "student",
+      "enrolledCourses": [
+        {
+          "examName": "Circles",
+          "date": "2025-04-24"
+        }
+      ]
     },
     {
       "id": "2",
@@ -37,6 +43,14 @@
       "password": "vyshnavi",
       "checkbox": true,
       "role": "student"
+    },
+    {
+      "id": "2",
+      "email": "student@example.com",
+      "password": "student123",
+      "role": "student",
+      "enrolledCourses": [],
+      "completedCourses": []
     }
   ]
 }

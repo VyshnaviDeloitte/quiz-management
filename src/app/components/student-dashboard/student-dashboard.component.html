@@ -1,72 +1,72 @@
-
 <div class="layout-container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <nav class="sidebar-nav">
-        <button class="icon active">🏠</button>
-        <button class="icon">👤</button>
-        <button class="icon">⚙️</button>
-      </nav>
-    </aside>
-  
-    <!-- Main Content -->
-    <main class="main-content">
-      <!-- Topbar -->
-      <header class="topbar">
-        <div class="topbar-left">
-          <span class="logo-text">Quiz Management System</span>
-          <input type="text" placeholder="Search for something" class="search-box" />
-        </div>
-        <div class="user-info">
-          Natasha, P
-       
-        </div>
-      </header>
-  
-      <!-- Dashboard -->
-      <section class="dashboard">
-        <h2>Exams Dashboard</h2>
-  
-        <!-- Tabs -->
-        <div class="tabs">
-          <span class="tab active">Active {{active}}</span>
-          <span class="tab">Enrolled (06)</span>
-          <span class="tab">Completed (12)</span>
-        </div>
-  
-        <!-- Filters -->
-        <div class="filters">
-          <select>
-            <option>Select date</option>
-          </select>
-          <select>
-            <option>Filter by subject</option>
-          </select>
-        </div>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <nav class="sidebar-nav">
+      <button class="icon active">🏠</button>
+      <button class="icon">👤</button>
+      <button class="icon">⚙️</button>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="logo-text">Quiz Management System</span>
+        <input type="text" placeholder="Search for something" class="search-box" />
+      </div>
+      <div class="user-info">
+        {{username}}
+     
+      </div>
+    </header>
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+      <h2>Exams Dashboard</h2>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <span class="tab active">Active {{ active }}</span>
+        <span class="tab" (click)="navigateTo('enrolled')">Enrolled {{ enrolledCount }}</span>
+        <span class="tab" (click)="navigateTo('completed')">Completed {{ completedCount }}</span>
+      </div>
+      
+      <!-- Filters -->
+      <div class="filters">
+        <select>
+          <option>Select date</option>
+        </select>
+        <select>
+          <option>Filter by subject</option>
+        </select>
+      </div>
 
 
-         <!-- Exam Cards -->
-        <div class="exam-grid">
-          <div class="exam-card" *ngFor="let quiz of quizzes">
-            <div class="exam-header">
-              <h3>{{ quiz.title }}</h3>
-              <span [ngClass]="getDifficultyClass(quiz.difficulty)">
-                {{ quiz.difficulty }}
-              </span>
-            </div>
-        
-            <div class="exam-info">
-              <p><strong>Start at: </strong> {{ quiz.startDate || 'N/A' }}</p>
-              <p><strong>Duration: </strong> {{ quiz.duration }} mins</p>
-              <p><strong>Subject: </strong> {{ quiz.category }}</p>
-              <p><strong>Enrolled: </strong> {{ quiz.enrolled || 0 }}</p>
-            </div>
-        
-            <button class="btn btn-success mt-3">Start</button>
-            <button class="btn btn-primary mt-3" (click)="enrollInQuiz(quiz)">Enroll</button>
-
+       <!-- Exam Cards -->
+      <div class="exam-grid">
+        <div class="exam-card" *ngFor="let quiz of quizzes">
+          <div class="exam-header">
+            <h3>{{ quiz.title }}</h3>
+            <span [ngClass]="getDifficultyClass(quiz.difficulty)">
+              {{ quiz.difficulty }}
+            </span>
           </div>
+      
+          <div class="exam-info">
+            <p><strong>Start at: </strong> {{ quiz.startDate || 'N/A' }}</p>
+            <p><strong>Duration: </strong> {{ quiz.duration }} mins</p>
+            <p><strong>Subject: </strong> {{ quiz.category }}</p>
+            <p><strong>Enrolled: </strong> {{ quiz.enrolled || 0 }}</p>
+          </div>
+      
+          <button class="btn btn-success mt-3" (click)="startQuiz(quiz)">Start</button>
+          <button class="btn btn-primary mt-3" (click)="enrollInQuiz(quiz)">Enroll</button>
+          
+
         </div>
-      </section>
-    </main>
-  </div>
+      </div>
+    </section>
+  </main>
+</div>

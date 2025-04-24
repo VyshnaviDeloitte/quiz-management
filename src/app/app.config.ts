@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient,withFetch } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 
@@ -13,6 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     importProvidersFrom(BrowserModule), // Ensure BrowserModule is also imported
     importProvidersFrom(HttpClientModule),
+    // provideHttpClient(withFetch()),
     // importProvidersFrom(NgChartsModule),
   ]
 };

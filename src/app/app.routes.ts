@@ -5,6 +5,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { StudentDashboardComponent } from './components/student-dashboard/student-dashboard.component';
 import { authGuard } from './services/auth.guard';
 import { AdminCreateExamComponent } from './components/admin-create-exam/admin-create-exam.component';
+import { StudentEnrolledComponent } from './components/student-enrolled/student-enrolled.component';
+import { StudentCompletedComponent } from './components/student-completed/student-completed.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -12,6 +14,9 @@ export const routes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: 'admin-dashboard', component: AdminDashboardComponent,canActivate:[authGuard]},
     { path: 'student-dashboard', component: StudentDashboardComponent,canActivate:[authGuard] },
-    { path: 'create-exam', component: AdminCreateExamComponent,canActivate:[authGuard] }
+    { path: 'create-exam', component: AdminCreateExamComponent,canActivate:[authGuard] },
+    { path: 'student/enrolled', component: StudentEnrolledComponent,canActivate:[authGuard] },
+    { path: 'create-exam', component: StudentCompletedComponent,canActivate:[authGuard] },
+
 
 ];

@@ -82,7 +82,7 @@ attachedFile: [''],
 
   submitQuiz() {
     if (this.quizForm.valid) {
-      this.http.post('http://localhost:3000/quizzes', this.quizForm.value).subscribe(() => {
+      this.http.post('http://localhost:4000/quizzes', this.quizForm.value).subscribe(() => {
         alert('Quiz created successfully!');
         this.quizForm.reset();
         this.questions.clear();

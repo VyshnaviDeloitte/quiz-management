@@ -1,61 +1,61 @@
 <div class="login-wrapper">
-    <div class="login-container">
-      <div class="login-form">
-        <h1>Quiz Management System</h1>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <input formControlName="email" type="text" placeholder="Email" />
-          @if(loginForm.controls['email'].touched)
-          {
-             
-                @if(loginForm.controls['email'].errors?.['required'])
-                {
-                   <span style="color:red">This is required</span>
-                }
-                @if(loginForm.controls['email'].errors?.['email'])
-                {
-                   <span style="color:red">Pls enter email</span>
-                }
-              
-          }
-          <input formControlName="password"  type="password" placeholder="Password" />
-          @if(loginForm.controls['password'].touched)
-          {
-              <div class="text-danger">
-                @if(loginForm.controls['password'].errors?.['required'])
-                {
-                   <span style="color:red">This is required</span>
-                }
-                @if(loginForm.controls['password'].errors?.['minlength'])
-                {
-                   <span style="color:red">Minimum 5 characters are required</span>
-                }
-              </div>
-          }
-          <label class="checkbox-container">
-            <input type="checkbox" formControlName="checkbox" />
-            
-            <span>I agree all the terms and conditions using this tool</span>
-            @if(loginForm.controls['checkbox'].touched)
-            {
-              @if(loginForm.controls['checkbox'].errors?.['required'])
+  <div class="login-container">
+    <div class="login-form">
+      <h1>Quiz Management System</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input formControlName="email" type="text" placeholder="Email" />
+        @if(loginForm.controls['email'].touched)
+        {
+           
+              @if(loginForm.controls['email'].errors?.['required'])
               {
-                 <span style="color:red">This is Mandatory to accept</span>
+                 <span style="color:red">This is required</span>
               }
+              @if(loginForm.controls['email'].errors?.['email'])
+              {
+                 <span style="color:red">Pls enter email</span>
+              }
+            
+        }
+        <input formControlName="password"  type="password" placeholder="Password" />
+        @if(loginForm.controls['password'].touched)
+        {
+            <div class="text-danger">
+              @if(loginForm.controls['password'].errors?.['required'])
+              {
+                 <span style="color:red">This is required</span>
+              }
+              @if(loginForm.controls['password'].errors?.['minlength'])
+              {
+                 <span style="color:red">Minimum 5 characters are required</span>
+              }
+            </div>
+        }
+        <label class="checkbox-container">
+          <input type="checkbox" formControlName="checkbox" />
+          
+          <span>I agree all the terms and conditions using this tool</span>
+          @if(loginForm.controls['checkbox'].touched)
+          {
+            @if(loginForm.controls['checkbox'].errors?.['required'])
+            {
+               <span style="color:red">This is Mandatory to accept</span>
             }
-          </label>
-          <button [disabled]="loginForm.invalid"  type="submit" class="btn-default">LOGIN</button>
-          <button   type="submit" class="btn btn-success mt-5" (click)="navigateToSignUp()">SignUp</button>
-         
-        </form>
-      </div>
-      <div class="login-welcome">
-        <h2>Welcome,</h2>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        </p>
-      </div>
+          }
+        </label>
+        <button [disabled]="loginForm.invalid"  type="submit" class="btn-default">LOGIN</button>
+        <button   type="submit" class="btn btn-success mt-5" (click)="navigateToSignUp()">SignUp</button>
+       
+      </form>
+    </div>
+    <div class="login-welcome">
+      <h2>Welcome,</h2>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      </p>
     </div>
   </div>
-  <router-outlet />
+</div>
+<router-outlet />

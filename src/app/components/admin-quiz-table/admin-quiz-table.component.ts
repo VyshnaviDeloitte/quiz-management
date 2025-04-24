@@ -16,7 +16,7 @@ export class AdminQuizTableComponent {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<any[]>('http://localhost:3000/quizzes').subscribe(data => {
+    this.http.get<any[]>('http://localhost:4000/quizzes').subscribe(data => {
       this.quizzes = data;
     });
   }

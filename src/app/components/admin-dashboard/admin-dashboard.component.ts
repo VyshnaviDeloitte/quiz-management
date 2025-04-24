@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { AdminQuizTableComponent } from '../admin-quiz-table/admin-quiz-table.component';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -15,8 +16,11 @@ import { HttpClient } from '@angular/common/http';
 export class AdminDashboardComponent {
 
   quizForm: FormGroup;
-  
-    constructor(private fb: FormBuilder, private http: HttpClient) {
+  username: string = ''; 
+
+
+
+    constructor(private fb: FormBuilder, private http: HttpClient,private route:Router) {
       this.quizForm = this.fb.group({
         title: ['', Validators.required],
         category: ['', Validators.required],
@@ -32,6 +36,7 @@ export class AdminDashboardComponent {
       });
     }
   
+    
   
     onFileSelect(event: any) {
       const file: File = event.target.files[0];
@@ -86,7 +91,7 @@ export class AdminDashboardComponent {
   
     submitQuiz() {
       if (this.quizForm.valid) {
-        this.http.post('http://localhost:3000/quizzes', this.quizForm.value).subscribe(() => {
+        this.http.post('http://localhost:4000/quizzes', this.quizForm.value).subscribe(() => {
           alert('Quiz created successfully!');
           this.quizForm.reset();
           this.questions.clear();

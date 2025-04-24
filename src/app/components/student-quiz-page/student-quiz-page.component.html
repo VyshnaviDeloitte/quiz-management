@@ -1,1 +1,90 @@
-<p>student-quiz-page works!</p>
+<div class="layout-container">
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <button class="icon active">🏠</button>
+            <button class="icon">👤</button>
+            <button class="icon">⚙️</button>
+        </nav>
+    </aside>
+  
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <span class="logo-text">Quiz Management System</span>
+                <input type="text" placeholder="Search for something" class="search-box" />
+            </div>
+            <div class="user-info">
+                {{ quiz?.title }}
+                <img src="https://via.placeholder.com/30" class="avatar" />
+            </div>
+        </header>
+  
+        <section class="questionnaire-wrapper" *ngIf="quiz">
+            <div class="questionnaire-header">
+                <h3> Questions:</h3>
+                <div class="timer-box">{{ timerDisplay }}</div>
+            </div>
+  
+            <form [formGroup]="quizForm">
+              <div formArrayName="answers">
+                <div *ngFor="let question of questions; let i = index" class="question-block" [formGroupName]="i">
+                  <p class="question-text">
+                    {{ i + 1 }}. {{ question.text }}
+                  </p>
+  
+                  <div class="options">
+                    <label *ngFor="let option of question.options">
+                      <input
+                        type="radio"
+                        formControlName="selectedAnswer"
+                        [value]="option"
+                        (change)="onAnswerChange(i, option)" 
+                      />
+                      {{ option }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="submit-btn-wrapper">
+                <button type="button" class="submit-btn" (click)="onSubmit()">
+                  Submit
+                </button>
+              </div>
+            </form>
+        </section>
+    </main>
+  </div>
+  
+  <!-- Confirmation Modal -->
+  <ng-template #confirmationModal let-modal>
+    <div class="modal-header">
+      <h2 class="modal-title">Are you sure you want to submit?</h2>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      <p>You are about to submit your quiz. Do you want to proceed?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('no')">No</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('yes')">Yes</button>
+    </div>
+  </ng-template>
+  
+  <!-- Result Modal -->
+  <ng-template #resultModal let-modal>
+    <div class="modal-header">
+        <h2 class="modal-title">Quiz Submitted <span>✔️</span></h2>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <p>Congratulations! Your score is:</p>
+        <div class="score-circle">{{ score }}</div>
+        <p>Out of {{ questions.length }}</p>
+        <p>You have completed the quiz.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close(); router.navigate(['/student-dashboard'])">
+            Back to Dashboard
+        </button>
+    </div>
+  </ng-template>

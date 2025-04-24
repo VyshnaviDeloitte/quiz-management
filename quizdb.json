@@ -44,6 +44,51 @@
       "endDate": "2025-04-26",
       "attachedFile": "Student-Q 6.png",
       "enrolled": 2
+    },
+    {
+      "id": "19b9",
+      "title": "Basics of Angular",
+      "category": "Angular",
+      "duration": 2,
+      "difficulty": "easy",
+      "allowMultipleAttempts": true,
+      "shuffleQuestions": true,
+      "questions": [
+        {
+          "text": "command used to create a component in angular?",
+          "explanation": "ng g c name",
+          "points": 1,
+          "feedbackCorrect": "Great Going",
+          "feedbackIncorrect": "Answer Carefully",
+          "shuffleOptions": false,
+          "correctOptionIndex": 0,
+          "options": [
+            "ng g c name",
+            "ng g g name",
+            "ng g s name",
+            "ng new name"
+          ]
+        },
+        {
+          "text": "command used to create a  service  in angular?",
+          "explanation": "ng g s name",
+          "points": 1,
+          "feedbackCorrect": "",
+          "feedbackIncorrect": "",
+          "shuffleOptions": false,
+          "correctOptionIndex": 1,
+          "options": [
+            "ng g c name",
+            "ng g s name",
+            "ng g g name",
+            "ng new name"
+          ]
+        }
+      ],
+      "startDate": "2025-04-25",
+      "endDate": "2025-04-27",
+      "attachedFile": "",
+      "enrolled": 1
     }
   ]
 }

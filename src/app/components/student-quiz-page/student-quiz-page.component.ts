@@ -14,8 +14,8 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
   providers: [NgbModal]
 })
 export class StudentQuizPageComponent implements OnInit, OnDestroy {
-  @ViewChild('confirmationModal') confirmationModal: any; // Modal reference for confirmation
-  @ViewChild('resultModal') resultModal: any; // Modal reference for result
+  @ViewChild('confirmationModal') confirmationModal: any;
+  @ViewChild('resultModal') resultModal: any;
 
   quizId: string = '';
   quiz: any;
@@ -27,6 +27,10 @@ export class StudentQuizPageComponent implements OnInit, OnDestroy {
   score: number = 0;
   private modalRef: NgbModalRef | undefined;
 
+  // Pagination
+  pageSize = 5;
+  currentPage = 0;
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -34,7 +38,7 @@ export class StudentQuizPageComponent implements OnInit, OnDestroy {
     private modalService: NgbModal
   ) {
     this.quizForm = new FormGroup({
-      answers: new FormArray([]) // Initialize an empty FormArray
+      answers: new FormArray([])
     });
   }
 
@@ -47,20 +51,16 @@ export class StudentQuizPageComponent implements OnInit, OnDestroy {
         this.timeLeft = this.quiz.duration * 60;
 
         const formGroups = this.questions.map(() => new FormGroup({
-          selectedAnswer: new FormControl(null) // Initialize each FormGroup with selectedAnswer
+          selectedAnswer: new FormControl(null)
         }));
 
         this.quizForm = new FormGroup({
-          answers: new FormArray(formGroups) // Populate the FormArray
+          answers: new FormArray(formGroups)
         });
 
         this.startTimer();
       });
     }
-  }
-
-  get answers(): FormArray {
-    return this.quizForm.get('answers') as FormArray;
   }
 
   ngOnDestroy(): void {
@@ -94,12 +94,49 @@ export class StudentQuizPageComponent implements OnInit, OnDestroy {
     return val < 10 ? '0' + val : val.toString();
   }
 
+  get answers(): FormArray {
+    return this.quizForm.get('answers') as FormArray;
+  }
+
   onAnswerChange(index: number, selectedOption: string): void {
-    const control = (this.quizForm.get('answers') as FormArray).at(index);
+    const control = this.answers.at(index);
     control.get('selectedAnswer')?.setValue(selectedOption);
   }
 
-  // Method to handle Submit button click
+  // Pagination
+  get totalPages(): number {
+    return Math.ceil(this.questions.length / this.pageSize);
+  }
+
+  get pagedQuestions() {
+    const start = this.currentPage * this.pageSize;
+    return this.questions.slice(start, start + this.pageSize);
+  }
+
+  get currentPageStartIndex(): number {
+    return this.currentPage * this.pageSize;
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages - 1) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+    }
+  }
+
+  isLastPage(): boolean {
+    return this.currentPage === this.totalPages - 1;
+  }
+
+  showPaginationButtons(): boolean {
+    return this.totalPages > 1;
+  }
+
   onSubmit() {
     if (this.timeLeft > 0) {
       this.openConfirmationModal();
@@ -108,7 +145,6 @@ export class StudentQuizPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Show the confirmation modal
   openConfirmationModal() {
     const modalRef = this.modalService.open(this.confirmationModal, {
       ariaLabelledBy: 'modal-title',
@@ -128,14 +164,13 @@ export class StudentQuizPageComponent implements OnInit, OnDestroy {
   submitQuiz() {
     clearInterval(this.interval);
 
-    const selectedAnswers = (this.quizForm.get('answers') as FormArray).controls.map(
+    const selectedAnswers = this.answers.controls.map(
       ctrl => ctrl.get('selectedAnswer')?.value
     );
 
     this.score = this.questions.reduce((acc, question, index) => {
       const selected = selectedAnswers[index];
       const correct = question.options[question.correctOptionIndex];
-
       return selected === correct ? acc + (question.points || 1) : acc;
     }, 0);
 
@@ -158,14 +193,14 @@ export class StudentQuizPageComponent implements OnInit, OnDestroy {
 
         this.http.put(`http://localhost:3000/users/${student.id}`, updatedStudent).subscribe(() => {
           localStorage.setItem('user', JSON.stringify(updatedStudent));
-          this.openResultModal(); // Open result modal upon successful submission
+          this.openResultModal();
         });
       });
     }
   }
 
   openResultModal() {
-    const modalRef = this.modalService.open(this.resultModal, {
+    this.modalService.open(this.resultModal, {
       ariaLabelledBy: 'modal-title',
       backdrop: 'static',
       keyboard: false

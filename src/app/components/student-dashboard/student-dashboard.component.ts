@@ -15,7 +15,7 @@ export class StudentDashboardComponent implements OnInit {
   active: number = 0;
   enrolledCount: number = 0;
   completedCount: number = 0;
-  username: string = '';  // username extracted from email
+  username: string = '';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -30,12 +30,9 @@ export class StudentDashboardComponent implements OnInit {
       }).length;
     });
 
-    // Load user from localStorage and extract stats and username
     const userStr = localStorage.getItem('user');
     if (userStr) {
       const user = JSON.parse(userStr);
-
-      // Extract username before '@gmail.com'
       this.username = user.email.split('@')[0];
 
       this.http.get<any[]>(`http://localhost:3000/users?email=${user.email}`).subscribe(users => {
@@ -46,51 +43,50 @@ export class StudentDashboardComponent implements OnInit {
     }
   }
 
-  // Method to check if the user is already enrolled in a quiz
   isUserEnrolled(quiz: any): boolean {
     const userStr = localStorage.getItem('user');
     if (!userStr) return false;
-
     const user = JSON.parse(userStr);
-    return (user.enrolledCourses || []).some((course: any) => course.examName === quiz.title);
+
+    const isEnrolled = (user.enrolledCourses || []).some((course: any) => course.examName === quiz.title);
+    const isCompleted = (user.completedCourses || []).some((course: any) => course.examName === quiz.title);
+
+    if (quiz.allowMultipleAttempts) {
+      return false; // allow repeated enrollments
+    }
+
+    return isEnrolled && !isCompleted;
   }
 
-  // Method to check if the user has already completed the quiz
   isUserCompleted(quiz: any): boolean {
     const userStr = localStorage.getItem('user');
     if (!userStr) return false;
-
     const user = JSON.parse(userStr);
-    return (user.completedCourses || []).some((course: any) => course.examName === quiz.title);
+
+    const isCompleted = (user.completedCourses || []).some((course: any) => course.examName === quiz.title);
+
+    if (quiz.allowMultipleAttempts) {
+      return false; // allow repeated attempts
+    }
+
+    return isCompleted;
   }
 
-  // Navigate to the respective section (Enrolled or Completed)
   navigateTo(type: 'enrolled' | 'completed') {
     this.router.navigate([`/student/${type}`]);
   }
 
-  // Method to handle enrollment
   enrollInQuiz(quiz: any) {
     const userStr = localStorage.getItem('user');
     if (!userStr) return;
-
     const user = JSON.parse(userStr);
 
-    // Check if the user is already enrolled in the quiz
-    const alreadyEnrolled = (user.enrolledCourses || []).some((c: any) => c.examName === quiz.title);
-    if (alreadyEnrolled) {
-      alert(`You are already enrolled in ${quiz.title}.`);
-      return;
-    }
-
-    // Check if the user has already completed the quiz
     const alreadyCompleted = (user.completedCourses || []).some((c: any) => c.examName === quiz.title);
-    if (alreadyCompleted) {
-      alert(`You have already completed ${quiz.title}.`);
+    if (alreadyCompleted && !quiz.allowMultipleAttempts) {
+      alert(`You have already completed ${quiz.title}. Multiple attempts not allowed.`);
       return;
     }
 
-    // Proceed with enrollment
     const updatedQuiz = {
       ...quiz,
       enrolled: (quiz.enrolled || 0) + 1
@@ -117,14 +113,12 @@ export class StudentDashboardComponent implements OnInit {
     });
   }
 
-  // Method to handle starting the quiz
   startQuiz(quiz: any) {
     const userStr = localStorage.getItem('user');
     if (!userStr) return;
-
     const user = JSON.parse(userStr);
-    const today = new Date().toISOString().split('T')[0];
 
+    const today = new Date().toISOString().split('T')[0];
     const completedExam = {
       examName: quiz.title,
       score: 0,
@@ -133,11 +127,10 @@ export class StudentDashboardComponent implements OnInit {
 
     this.http.get<any[]>(`http://localhost:3000/users?email=${user.email}`).subscribe(users => {
       const student = users[0];
+      const isCompleted = (student.completedCourses || []).some((c: any) => c.examName === quiz.title);
 
-      // Check if the user has already completed the quiz
-      const alreadyCompleted = (student.completedCourses || []).some((c: any) => c.examName === quiz.title);
-      if (alreadyCompleted) {
-        alert(`You have already completed ${quiz.title}.`);
+      if (isCompleted && !quiz.allowMultipleAttempts) {
+        alert(`You have already completed ${quiz.title}. Multiple attempts not allowed.`);
         return;
       }
 
@@ -149,13 +142,11 @@ export class StudentDashboardComponent implements OnInit {
       this.http.put(`http://localhost:3000/users/${student.id}`, updatedStudent).subscribe(() => {
         localStorage.setItem('user', JSON.stringify(updatedStudent));
         this.completedCount++;
-        // Navigate to quiz page
         this.router.navigate(['/quiz-page', quiz.id]);
       });
     });
   }
 
-  // Method to get the difficulty class for styling
   getDifficultyClass(difficulty: string): string {
     switch (difficulty?.toLowerCase()) {
       case 'high':

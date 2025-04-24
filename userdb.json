@@ -65,6 +65,16 @@
           "examName": "Basics of Angular",
           "score": 0,
           "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 2,
+          "date": "2025-04-24"
         }
       ]
     },
@@ -78,7 +88,35 @@
       "id": "80a6",
       "email": "laxmi@gmail.com",
       "password": "laxmi",
-      "role": "student"
+      "role": "student",
+      "enrolledCourses": [
+        {
+          "examName": "Circles",
+          "date": "2025-04-24"
+        }
+      ],
+      "completedCourses": [
+        {
+          "examName": "Circles",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Circles",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 2,
+          "date": "2025-04-24"
+        }
+      ]
     },
     {
       "id": "e24b",

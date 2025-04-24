@@ -21,7 +21,7 @@
         />
       </div>
       <div class="user-info">
-        {{ username }}
+        {{ username | uppercase}}
       </div>
     </header>
 
@@ -36,19 +36,16 @@
           >Enrolled {{ enrolledCount }}</span
         >
         <span class="tab" (click)="navigateTo('completed')"
-          >Completed {{ completedCount }}</span
-        >
+          >Completed {{ completedCount }}</span >
+          <select>
+            <option>Select date</option>
+          </select>
+          <select>
+            <option>Filter by subject</option>
+          </select>
       </div>
 
-      <!-- Filters -->
-      <div class="filters">
-        <select>
-          <option>Select date</option>
-        </select>
-        <select>
-          <option>Filter by subject</option>
-        </select>
-      </div>
+     
 
       <!-- Exam Cards -->
       <div class="exam-grid">

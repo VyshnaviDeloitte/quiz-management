@@ -30,6 +30,16 @@ export class StudentCompletedComponent implements OnInit {
   ngOnInit(): void {
     this.loadQuizzes();
     this.loadUserData();
+
+    this.http.get<any[]>('http://localhost:4000/quizzes').subscribe(data => {
+      this.quizzes = data;
+
+      const today = new Date();
+      this.active = this.quizzes.filter(q => {
+        const endDate = q.endDate ? new Date(q.endDate) : null;
+        return endDate && endDate > today;
+      }).length;
+    });
   }
 
   loadQuizzes() {

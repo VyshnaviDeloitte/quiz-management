@@ -1,82 +1,84 @@
-<p>student-completed works!</p>
+<!-- student-completed.component.html -->
 <div class="layout-container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <nav class="sidebar-nav">
-        <button class="icon active">🏠</button>
-        <button class="icon">👤</button>
-        <button class="icon">⚙️</button>
-      </nav>
-    </aside>
-  
-    <!-- Main Content -->
-    <main class="main-content">
-      <!-- Topbar -->
-      <header class="topbar">
-        <div class="topbar-left">
-          <span class="logo-text">Angular</span>
-          <input type="text" placeholder="Search for something" class="search-box" />
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <nav class="sidebar-nav">
+      <button class="icon active">🏠</button>
+      <button class="icon">👤</button>
+      <button class="icon">⚙️</button>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="logo-text">Quiz-Management System</span>
+        <input type="text" placeholder="Search for something" class="search-box" />
+      </div>
+      <div class="user-info">
+        {{username | uppercase}}
+      </div>
+    </header>
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+      <h2>Exams Dashboard</h2>
+
+      <div class="tabs">
+        <span class="tab" (click)="navigateTo('active')">Active {{ active }}</span>
+        <span class="tab" (click)="navigateTo('enrolled')">Enrolled {{ enrolledCount }}</span>
+        <span class="tab active">Completed {{ completedCount }}</span>
+
+        <select class="ml-6">
+          <option>Select date</option>
+        </select>
+        <select>
+          <option>Filter by subject</option>
+        </select>
+      </div>
+
+      <!-- Completed List -->
+      <div class="enrolled-item" *ngFor="let course of completedCourses">
+        <div class="icon-wrap">
+          <div class="icon-box pink">💰</div>
         </div>
-        <div class="user-info">
-          Natasha, P
-          <img src="https://via.placeholder.com/30" class="avatar" />
+        <div class="exam-details">
+          <h3>{{ course.examName }}</h3>
         </div>
-      </header>
-  
-      <!-- Dashboard -->
-      <section class="dashboard">
-        <h2>Exams Dashboard</h2>
-  
-        <!-- Tabs -->
-        <!-- <div class="tabs">
-          <span class="tab" (click)="navigateTo('/student-dashboard')">Active {{ active }}</span>
-          <span class="tab" (click)="navigateTo('enrolled')">Enrolled {{ enrolledCount }}</span>
-          <span class="tab active" >Completed {{ completedCount }}</span>
-        </div> -->
-        <div class="tabs">
-          <span class="tab" (click)="navigateTo('active')">Active {{ active }}</span>
-          <span class="tab" (click)="navigateTo('enrolled')">Enrolled {{ enrolledCount }}</span>
-          <span class="tab active">Completed {{ completedCount }}</span>
+        <div>
+          <p class="mr-3">{{ course.date | date: 'dd MMM, yyyy' }}</p>
         </div>
-        
-  
-        <!-- Filters -->
-        <div class="filters">
-          <select>
-            <option>Select date</option>
-          </select>
-          <select>
-            <option>Filter by subject</option>
-          </select>
+        <div>
+          <p class="duration">{{ getDuration(course.examName) }} Hrs</p>
         </div>
-  
-        <!-- Completed List -->
-        <div class="completed-list">
-          <div class="completed-item" *ngFor="let exam of [1,2,3,4,5,6]">
-            <div class="icon-wrap">
-              <div class="icon-box pink">💰</div>
-            </div>
-            <div class="exam-details">
-              <h3>Angular Basics</h3>
-              <p class="exam-date">13 Aug, May 2024</p>
-              <p class="duration">02:30 Hrs</p>
-            </div>
-            <div class="subject-details">
-              <p>Financial Services</p>
-              <a href="#">Many publishing</a>
-            </div>
-            <div class="rating">
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star inactive">★</span>
-              <span class="star inactive">★</span>
-            </div>
-            <div class="action">
-              <button class="report-btn">View Report</button>
-            </div>
-          </div>
+        <div class="action">
+          <button class="resume-btn" (click)="openModal(course)">View Response</button>
         </div>
-      </section>
-    </main>
+      </div>
+      <!-- Result Modal -->
+<ng-template #resultModal let-modal>
+  <div class="modal-header">
+   
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
+  <div class="modal-body">
+    <p>Congratulations  you have scored</p>
+    <div class="score-circle">{{ score }}  / {{ questions.length }}</div>
+    <p>You have earned {{score}} points!</p>
+ 
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="modal.close(); router.navigate(['/student-dashboard'])"
+    >
+      Back to Dashboard
+    </button>
+  </div>
+</ng-template>
+    </section>
+  </main>
+</div>

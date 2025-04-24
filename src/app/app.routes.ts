@@ -16,6 +16,7 @@ export const routes: Routes = [
     { path: 'student-dashboard', component: StudentDashboardComponent,canActivate:[authGuard] },
     { path: 'create-exam', component: AdminCreateExamComponent,canActivate:[authGuard] },
     { path: 'student/enrolled', component: StudentEnrolledComponent,canActivate:[authGuard] },
+    // { path: 'student/completed', component:StudentCompletedComponent,canActivate:[authGuard] },
     { path: 'create-exam', component: StudentCompletedComponent,canActivate:[authGuard] },
 
 

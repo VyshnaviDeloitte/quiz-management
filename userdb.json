@@ -51,6 +51,13 @@
       "role": "student",
       "enrolledCourses": [],
       "completedCourses": []
+    },
+    {
+      "id": "d24c",
+      "email": "vyshnavi@gmail.com",
+      "password": "vyshnavi",
+      "checkbox": true,
+      "role": "student"
     }
   ]
 }

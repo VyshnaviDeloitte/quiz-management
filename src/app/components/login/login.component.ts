@@ -25,11 +25,15 @@ export class LoginComponent {
   onSubmit() {
     debugger;
     const { email, password } = this.loginForm.value;
+   
 
     this.http.get<any[]>(`http://localhost:3000/users?email=${email}&password=${password}`).subscribe(users => {
       if (users.length) {
         const user = users[0];
+         // Extract username before '@gmail.com'
+    const username = user.email.split('@')[0];
         localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('username', username);
         if (user.role === 'admin') {
           this.router.navigate(['/admin-dashboard']);
         } else {

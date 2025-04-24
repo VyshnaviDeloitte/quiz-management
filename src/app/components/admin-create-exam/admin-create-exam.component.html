@@ -1,1 +1,131 @@
 <p>admin-create-exam works!</p>
+<button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#createQuizModal">
+    <i class="bi bi-plus-circle"></i> Create Exam
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="createQuizModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create New Quiz</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeModalBtn"></button>
+        </div>
+  
+        <div class="modal-body">
+          <form [formGroup]="quizForm">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label>Quiz Title</label>
+                <input formControlName="title" class="form-control" />
+              </div>
+              <div class="col-md-6">
+                <label>Category</label>
+                <input formControlName="category" class="form-control" />
+              </div>
+  
+              <div class="col-md-4">
+                <label>Duration (minutes)</label>
+                <input formControlName="duration" type="number" class="form-control" />
+              </div>
+              <div class="col-md-4">
+                <label>Difficulty</label>
+                <select class="form-select" formControlName="difficulty">
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+              </div>
+              <div class="col-md-4 d-flex align-items-end">
+                <div class="form-check me-3">
+                  <input type="checkbox" class="form-check-input" formControlName="allowMultipleAttempts" />
+                  <label class="form-check-label">Allow Multiple Attempts</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" formControlName="shuffleQuestions" />
+                  <label class="form-check-label">Shuffle Questions</label>
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <label>Start Date</label>
+                <input formControlName="startDate" type="date" class="form-control" />
+              </div>
+              <div class="col-md-6">
+                <label>End Date</label>
+                <input formControlName="endDate" type="date" class="form-control" />
+              </div>
+  
+              <div class="col-md-12">
+                <label>Attach Additional Document (PDF/Image)</label>
+                <input type="file" (change)="onFileSelect($event)" class="form-control" />
+              </div>
+            </div>
+  
+            <hr class="my-4" />
+  
+            <div class="mb-3">
+              <button class="btn btn-sm btn-success" type="button" (click)="addQuestion()">
+                Add Question
+              </button>
+            </div>
+  
+            <div formArrayName="questions" *ngFor="let q of questions.controls; let i = index">
+              <div [formGroupName]="i" class="border rounded p-3 mb-4 bg-light">
+                <h5>Question {{ i + 1 }}</h5>
+  
+                <label>Question Text</label>
+                <input formControlName="text" class="form-control mb-2" />
+  
+                <label>Options:</label>
+                <div formArrayName="options">
+                  <div *ngFor="let opt of getOptions(i).controls; let j = index" class="input-group mb-2">
+                    <div class="input-group-text">
+                      <input
+                        type="radio"
+                        [value]="j"
+                        [formControl]="getFormControl(q.get('correctOptionIndex'))"
+                      />
+                    </div>
+                    <input [formControlName]="j" class="form-control" placeholder="Option {{ j + 1 }}" />
+                    <button type="button" class="btn btn-outline-danger" (click)="removeOption(i, j)">
+                      <i class="bi bi-x"></i>
+                    </button>
+                  </div>
+                </div>
+  
+                <button type="button" class="btn btn-sm btn-outline-success mb-3" (click)="addOption(i)">
+                  Add Option
+                </button>
+  
+                <label>Explanation</label>
+                <textarea formControlName="explanation" class="form-control mb-2"></textarea>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Points</label>
+                    <input type="number" formControlName="points" class="form-control mb-2" />
+                  </div>
+                  <div class="col-md-6">
+                    <label>Shuffle Options</label>
+                    <input type="checkbox" formControlName="shuffleOptions" class="form-check-input ms-2" />
+                  </div>
+                </div>
+  
+                <label>Feedback (Correct)</label>
+                <input type="text" formControlName="feedbackCorrect" class="form-control mb-2" />
+  
+                <label>Feedback (Incorrect)</label>
+                <input type="text" formControlName="feedbackIncorrect" class="form-control mb-2" />
+              </div>
+            </div>
+          </form>
+        </div>
+  
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary" (click)="submitQuiz()">Submit Quiz</button>
+        </div>
+      </div>
+    </div>
+  </div>

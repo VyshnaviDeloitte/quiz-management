@@ -1,0 +1,48 @@
+{
+  "quizzes": [
+    {
+      "id": "0529",
+      "title": "Circles",
+      "category": "Maths",
+      "duration": 5,
+      "difficulty": "easy",
+      "allowMultipleAttempts": false,
+      "shuffleQuestions": true,
+      "questions": [
+        {
+          "text": "What is the formula for calculating the circumference of a circle?",
+          "explanation": "2*pi*r",
+          "points": 1,
+          "feedbackCorrect": "Great Going",
+          "feedbackIncorrect": "Better Luck Next Time",
+          "shuffleOptions": true,
+          "correctOptionIndex": 0,
+          "options": [
+            "2*pi*r",
+            "pi*r*r",
+            "pi",
+            "r"
+          ]
+        },
+        {
+          "text": "What is the formula for calculating the area of a circle?",
+          "explanation": "pi*r*r",
+          "points": 1,
+          "feedbackCorrect": "Great Going",
+          "feedbackIncorrect": "Better Luck Next Time",
+          "shuffleOptions": true,
+          "correctOptionIndex": 0,
+          "options": [
+            "2*pi*r",
+            "pi*r*r",
+            "pi",
+            "r"
+          ]
+        }
+      ],
+      "startDate": "2025-04-24",
+      "endDate": "2025-04-26",
+      "attachedFile": "Student-Q 6.png"
+    }
+  ]
+}

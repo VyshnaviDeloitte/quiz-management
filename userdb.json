@@ -10,6 +10,13 @@
           "examName": "Circles",
           "date": "2025-04-24"
         }
+      ],
+      "completedCourses": [
+        {
+          "examName": "Circles",
+          "score": 0,
+          "date": "2025-04-24"
+        }
       ]
     },
     {

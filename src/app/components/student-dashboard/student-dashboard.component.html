@@ -1,3 +1,4 @@
+<!--student-dashboard html-->
 <div class="layout-container">
   <!-- Sidebar -->
   <aside class="sidebar">
@@ -14,11 +15,14 @@
     <header class="topbar">
       <div class="topbar-left">
         <span class="logo-text">Quiz Management System</span>
-        <input type="text" placeholder="Search for something" class="search-box" />
+        <input
+          type="text"
+          placeholder="Search for something"
+          class="search-box"
+        />
       </div>
       <div class="user-info">
-        {{username}}
-     
+        {{ username }}
       </div>
     </header>
 
@@ -29,10 +33,14 @@
       <!-- Tabs -->
       <div class="tabs">
         <span class="tab active">Active {{ active }}</span>
-        <span class="tab" (click)="navigateTo('enrolled')">Enrolled {{ enrolledCount }}</span>
-        <span class="tab" (click)="navigateTo('completed')">Completed {{ completedCount }}</span>
+        <span class="tab" (click)="navigateTo('enrolled')"
+          >Enrolled {{ enrolledCount }}</span
+        >
+        <span class="tab" (click)="navigateTo('completed')"
+          >Completed {{ completedCount }}</span
+        >
       </div>
-      
+
       <!-- Filters -->
       <div class="filters">
         <select>
@@ -43,8 +51,7 @@
         </select>
       </div>
 
-
-       <!-- Exam Cards -->
+      <!-- Exam Cards -->
       <div class="exam-grid">
         <div class="exam-card" *ngFor="let quiz of quizzes">
           <div class="exam-header">
@@ -53,18 +60,25 @@
               {{ quiz.difficulty }}
             </span>
           </div>
-      
+
           <div class="exam-info">
-            <p><strong>Start at: </strong> {{ quiz.startDate || 'N/A' }}</p>
+            <p><strong>Start at: </strong> {{ quiz.startDate || "N/A" }}</p>
             <p><strong>Duration: </strong> {{ quiz.duration }} mins</p>
             <p><strong>Subject: </strong> {{ quiz.category }}</p>
             <p><strong>Enrolled: </strong> {{ quiz.enrolled || 0 }}</p>
           </div>
-      
-          <button class="btn btn-success mt-3" (click)="startQuiz(quiz)">Start</button>
-          <button class="btn btn-primary mt-3" (click)="enrollInQuiz(quiz)">Enroll</button>
-          
 
+          <button class="btn btn-success mt-3" (click)="startQuiz(quiz)">
+            Start
+          </button>
+          <!-- <button class="btn btn-primary mt-3" (click)="enrollInQuiz(quiz)">Enroll</button> -->
+          <button
+            class="btn btn-primary mt-3"
+            (click)="enrollInQuiz(quiz)"
+            [disabled]="isUserEnrolled(quiz) || isUserCompleted(quiz)"
+          >
+            Enroll
+          </button>
         </div>
       </div>
     </section>

@@ -7,6 +7,7 @@ import { authGuard } from './services/auth.guard';
 import { AdminCreateExamComponent } from './components/admin-create-exam/admin-create-exam.component';
 import { StudentEnrolledComponent } from './components/student-enrolled/student-enrolled.component';
 import { StudentCompletedComponent } from './components/student-completed/student-completed.component';
+import { StudentQuizPageComponent } from './components/student-quiz-page/student-quiz-page.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,6 +19,8 @@ export const routes: Routes = [
     { path: 'student/enrolled', component: StudentEnrolledComponent,canActivate:[authGuard] },
     { path: 'student/completed', component:StudentCompletedComponent,canActivate:[authGuard] },
     { path: 'create-exam', component: StudentCompletedComponent,canActivate:[authGuard] },
+    { path: 'quiz-page/:id', component: StudentQuizPageComponent,canActivate:[authGuard] },
+  
 
 
 ];

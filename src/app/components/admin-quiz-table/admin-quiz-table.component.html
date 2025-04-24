@@ -1,1 +1,28 @@
-<p>admin-quiz-table works!</p>
+
+<div class="table-responsive mt-4">
+    <table class="table table-bordered shadow-sm">
+      <thead>
+        <tr class="text-violet">
+          <th>Exam Title</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Duration (min)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let quiz of quizzes">
+          <td class="text-black">{{ quiz.title }}</td>
+          <td class="text-black">{{ quiz.startDate || 'N/A' }}</td>
+          <td class="text-black">{{ quiz.endDate || 'N/A' }}</td>
+          <td class="text-black">{{ quiz.duration }}</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary text-violet border-violet"
+                    (click)="viewResults(quiz)">
+              View Results
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

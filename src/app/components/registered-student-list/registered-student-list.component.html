@@ -1,0 +1,19 @@
+
+<div class="container">
+
+    <h2>Active Students</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Student Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ student | titlecase }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

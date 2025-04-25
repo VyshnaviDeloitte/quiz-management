@@ -89,6 +89,34 @@
       "endDate": "2025-04-27",
       "attachedFile": "",
       "enrolled": 1
+    },
+    {
+      "id": "a5d1",
+      "title": "js",
+      "category": "js",
+      "duration": 1,
+      "difficulty": "easy",
+      "allowMultipleAttempts": true,
+      "shuffleQuestions": false,
+      "questions": [
+        {
+          "text": "js",
+          "explanation": "javascript",
+          "points": 1,
+          "feedbackCorrect": "",
+          "feedbackIncorrect": "",
+          "shuffleOptions": false,
+          "correctOptionIndex": 0,
+          "options": [
+            "javascript",
+            "java xml"
+          ]
+        }
+      ],
+      "startDate": "2025-04-18",
+      "endDate": "2025-04-28",
+      "attachedFile": "",
+      "enrolled": 0
     }
   ]
 }

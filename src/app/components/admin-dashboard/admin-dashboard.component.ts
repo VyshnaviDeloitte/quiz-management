@@ -10,19 +10,23 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [AdminQuizTableComponent, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    AdminQuizTableComponent,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './admin-dashboard.component.html',
-  styleUrl: './admin-dashboard.component.css'
+  styleUrl: './admin-dashboard.component.css',
 })
 export class AdminDashboardComponent implements OnInit {
-
   //  Username extracted from localStorage
   username: string = '';
 
@@ -39,7 +43,7 @@ export class AdminDashboardComponent implements OnInit {
 
   quizForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient , private router:Router) {
     this.quizForm = this.fb.group({
       title: ['', Validators.required],
       category: ['', Validators.required],
@@ -51,7 +55,7 @@ export class AdminDashboardComponent implements OnInit {
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
       attachedFile: [''],
-      enrolled: 0
+      enrolled: 0,
     });
   }
 
@@ -61,7 +65,7 @@ export class AdminDashboardComponent implements OnInit {
     this.username = storedUsername || 'Admin';
 
     //  Load quizzes
-    this.http.get<any[]>('http://localhost:4000/quizzes').subscribe(data => {
+    this.http.get<any[]>('http://localhost:4000/quizzes').subscribe((data) => {
       this.quizzes = data;
     });
   }
@@ -70,7 +74,7 @@ export class AdminDashboardComponent implements OnInit {
     const file: File = event.target.files[0];
     if (file) {
       this.quizForm.patchValue({
-        attachedFile: file.name
+        attachedFile: file.name,
       });
     }
   }
@@ -98,8 +102,8 @@ export class AdminDashboardComponent implements OnInit {
       correctOptionIndex: [0],
       options: this.fb.array([
         this.fb.control('', Validators.required),
-        this.fb.control('', Validators.required)
-      ])
+        this.fb.control('', Validators.required),
+      ]),
     });
     this.questions.push(questionGroup);
   }
@@ -117,12 +121,14 @@ export class AdminDashboardComponent implements OnInit {
 
   submitQuiz() {
     if (this.quizForm.valid) {
-      this.http.post('http://localhost:4000/quizzes', this.quizForm.value).subscribe(() => {
-        alert('Quiz created successfully!');
-        this.quizForm.reset();
-        this.questions.clear();
-        document.getElementById('closeModalBtn')?.click();
-      });
+      this.http
+        .post('http://localhost:4000/quizzes', this.quizForm.value)
+        .subscribe(() => {
+          alert('Quiz created successfully!');
+          this.quizForm.reset();
+          this.questions.clear();
+          document.getElementById('closeModalBtn')?.click();
+        });
     }
   }
 
@@ -130,4 +136,28 @@ export class AdminDashboardComponent implements OnInit {
     console.log('Viewing results for quiz:', quiz.title);
     alert(`Results would open for quiz: ${quiz.title}`);
   }
+
+  navigateToAdminDashboard()
+  {
+    this.router.navigate(['/admin-dashboard']);
+  }
+
+  navigateToUserDetails()
+  {
+      this.router.navigate(['registered-student-list']);
+  }
+
+  
+  signOut()
+  {
+    alert('user-signing off');
+    this.router.navigate(['login']);
+    localStorage.removeItem('user');
+
+  }
+
+
+
 }
+
+

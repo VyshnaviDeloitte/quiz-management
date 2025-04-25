@@ -9,6 +9,7 @@ import { StudentEnrolledComponent } from './components/student-enrolled/student-
 import { StudentCompletedComponent } from './components/student-completed/student-completed.component';
 import { StudentQuizPageComponent } from './components/student-quiz-page/student-quiz-page.component';
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
+import { RegisteredStudentListComponent } from './components/registered-student-list/registered-student-list.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -21,6 +22,6 @@ export const routes: Routes = [
     { path: 'student/completed', component:StudentCompletedComponent,canActivate:[authGuard] },
     { path: 'create-exam', component: StudentCompletedComponent,canActivate:[authGuard] },
     { path: 'quiz-page/:id', component: StudentQuizPageComponent,canActivate:[authGuard] },
-    { path: 'student-details', component: StudentDetailsComponent,canActivate:[authGuard] }
+    { path: 'registered-student-list', component: RegisteredStudentListComponent,canActivate:[authGuard] }
   
 ];

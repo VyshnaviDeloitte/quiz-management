@@ -48,6 +48,26 @@ export class StudentCompletedComponent implements OnInit {
     });
   }
 
+
+  navigateToStudentDashboard()
+  {
+    this.router.navigate(['/student-dashboard']);
+  }
+
+  navigateToUserDetails()
+  {
+      this.router.navigate(['/student-details']);
+  }
+
+  
+  signOut()
+  {
+    alert('user-signing off');
+    this.router.navigate(['login']);
+    localStorage.removeItem('user');
+
+  }
+   
   loadUserData() {
     const userStr = localStorage.getItem('user');
     if (userStr) {

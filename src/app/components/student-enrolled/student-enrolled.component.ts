@@ -45,6 +45,24 @@ export class StudentEnrolledComponent implements OnInit { // Implemented OnInit
       // If active count depends on quizzes, calculate here or after user data loads
     });
   }
+  navigateToStudentDashboard()
+  {
+    this.router.navigate(['/student-dashboard']);
+  }
+
+  navigateToUserDetails()
+  {
+      this.router.navigate(['/student-details']);
+  }
+
+  
+  signOut()
+  {
+    alert('user-signing off');
+    this.router.navigate(['login']);
+    localStorage.removeItem('user');
+
+  }
 
   loadUserData() {
     const userStr = localStorage.getItem('user');

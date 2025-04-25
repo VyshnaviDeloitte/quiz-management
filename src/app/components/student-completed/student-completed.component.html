@@ -3,11 +3,12 @@
   <!-- Sidebar -->
   <aside class="sidebar">
     <nav class="sidebar-nav">
-      <button class="icon active">🏠</button>
-      <button class="icon">👤</button>
-      <button class="icon">⚙️</button>
+      <button class="icon active" (click)="navigateToStudentDashboard()" >🏠</button>
+      <button class="icon" (click)="navigateToUserDetails()">👤</button>
+      <button class="icon" (click)="signOut()">⚙️</button>
     </nav>
   </aside>
+  
 
   <!-- Main Content -->
   <main class="main-content">

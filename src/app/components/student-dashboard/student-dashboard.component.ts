@@ -96,6 +96,28 @@ export class StudentDashboardComponent implements OnInit {
   }
 
 
+
+  navigateToStudentDashboard()
+  {
+    this.router.navigate(['/student-dashboard']);
+  }
+
+  navigateToUserDetails()
+  {
+      this.router.navigate(['/student-details']);
+  }
+
+  
+  signOut()
+  {
+    alert('user-signing off');
+    this.router.navigate(['login']);
+    localStorage.removeItem('user');
+
+  }
+
+
+
   calculateActiveQuizzes(): void {
       if (!this.quizzes || !this.currentUser) {
           this.active = 0;

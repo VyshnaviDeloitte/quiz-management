@@ -8,6 +8,7 @@ import { AdminCreateExamComponent } from './components/admin-create-exam/admin-c
 import { StudentEnrolledComponent } from './components/student-enrolled/student-enrolled.component';
 import { StudentCompletedComponent } from './components/student-completed/student-completed.component';
 import { StudentQuizPageComponent } from './components/student-quiz-page/student-quiz-page.component';
+import { StudentDetailsComponent } from './components/student-details/student-details.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -20,7 +21,6 @@ export const routes: Routes = [
     { path: 'student/completed', component:StudentCompletedComponent,canActivate:[authGuard] },
     { path: 'create-exam', component: StudentCompletedComponent,canActivate:[authGuard] },
     { path: 'quiz-page/:id', component: StudentQuizPageComponent,canActivate:[authGuard] },
+    { path: 'student-details', component: StudentDetailsComponent,canActivate:[authGuard] }
   
-
-
 ];

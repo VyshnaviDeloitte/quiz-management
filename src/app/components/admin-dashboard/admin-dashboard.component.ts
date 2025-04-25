@@ -29,7 +29,11 @@ import { Router } from '@angular/router';
 export class AdminDashboardComponent implements OnInit {
   //  Username extracted from localStorage
   username: string = '';
-
+  runningEvents:number=0;
+  completionRate: number = 0;
+  examFinishes: number = 0; 
+  attempted:number=0;
+  notattempted:number=0;
   pieChartLabels = ['Attempted', 'In Progress', 'Not Attempted', 'Awaiting'];
   pieChartData = [30, 15, 35, 20];
 
@@ -64,11 +68,59 @@ export class AdminDashboardComponent implements OnInit {
     const storedUsername = localStorage.getItem('username');
     this.username = storedUsername || 'Admin';
 
-    //  Load quizzes
+    
+  
+    this.username = storedUsername || 'Admin';
+
     this.http.get<any[]>('http://localhost:4000/quizzes').subscribe((data) => {
       this.quizzes = data;
+
+      // Step 2: Filter active quizzes
+      const today = new Date();
+
+      this.runningEvents = data.filter(quiz => {
+        const endDate = new Date(quiz.endDate);
+        return endDate > today;
+      }).length;
+    });
+
+    // Fetch users data and calculate completion rate
+     // Fetch users data and calculate completion rate
+     this.http.get<any[]>('http://localhost:3000/users').subscribe((users) => {
+      let totalCompletionRate = 0;
+      let totalExamsFinished = 0;
+
+      // Iterate over each user to calculate their completion rate and exam finishes
+      users.forEach(user => {
+        const completedCoursesCount = user.completedCourses?.length || 0; // Completed courses count
+        const enrolledCoursesCount = user.enrolledCourses?.length || 0; // Enrolled courses count
+        
+        if(completedCoursesCount!=0)
+        {
+           this.attempted++;
+        }
+        if(enrolledCoursesCount!=0)
+        {
+          this.notattempted++;
+        }
+        // Calculate completion rate for this user
+        if (completedCoursesCount + enrolledCoursesCount > 0) {
+          const completionRateForUser = completedCoursesCount / (completedCoursesCount + enrolledCoursesCount);
+          totalCompletionRate += completionRateForUser;
+        }
+
+        // Sum up completed courses for total exam finishes
+        totalExamsFinished += completedCoursesCount;
+      });
+
+        // Store total completion rate as the overall completion rate
+      this.completionRate = totalCompletionRate;
+      
+      // Store total exams finished as the total number of exam finishes
+      this.examFinishes = totalExamsFinished;
     });
   }
+  
 
   onFileSelect(event: any) {
     const file: File = event.target.files[0];
@@ -94,6 +146,7 @@ export class AdminDashboardComponent implements OnInit {
   addQuestion() {
     const questionGroup = this.fb.group({
       text: ['', Validators.required],
+      AdminName:['',Validators.required],
       explanation: [''],
       points: ['', Validators.required],
       feedbackCorrect: [''],
@@ -105,7 +158,7 @@ export class AdminDashboardComponent implements OnInit {
         this.fb.control('', Validators.required),
       ]),
     });
-    this.questions.push(questionGroup);
+    this.questions.push(questionGroup)
   }
 
   addOption(qIndex: number) {
@@ -120,6 +173,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   submitQuiz() {
+    alert('quiz submitted');
     if (this.quizForm.valid) {
       this.http
         .post('http://localhost:4000/quizzes', this.quizForm.value)
@@ -129,6 +183,10 @@ export class AdminDashboardComponent implements OnInit {
           this.questions.clear();
           document.getElementById('closeModalBtn')?.click();
         });
+    }
+    else 
+    {
+      alert('invalid');
     }
   }
 
@@ -144,7 +202,7 @@ export class AdminDashboardComponent implements OnInit {
 
   navigateToUserDetails()
   {
-      this.router.navigate(['registered-student-list']);
+      this.router.navigate(['/rst']);
   }
 
   
@@ -159,5 +217,3 @@ export class AdminDashboardComponent implements OnInit {
 
 
 }
-
-

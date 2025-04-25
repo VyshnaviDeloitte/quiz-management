@@ -1,4 +1,5 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <div class="layout-container">
   <aside class="sidebar">
     <nav class="sidebar-nav">
@@ -33,13 +34,12 @@
           <h2>Students Statistics</h2>
           <div class="stats-details-container">
             <div class="chart-container">
-              <img src="placeholder-chart.png" alt="Student Statistics Chart Placeholder" class="chart-placeholder">
+              <div class="piechart" width="100" height="100"></div>
               </div>
             <div class="stats-text">
-              <p>Attempted <span class="stat-value">392</span></p>
-              <p>In Progress <span class="stat-value">083</span></p>
-              <p>Not Attempted <span class="stat-value">387</span></p>
-              <p>Awaiting <span class="stat-value">129</span></p>
+              <p>Attempted <span class="stat-value">{{attempted}}</span></p>
+              <p>In Progress <span class="stat-value">1</span></p>
+              <p>Not Attempted <span class="stat-value">{{notattempted}}</span></p>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
               <div class="card-icon-wrapper students">
                 <span class="material-icons">school</span> </div>
               <div class="card-content">
-                <span class="card-value">647</span>
+                <span class="card-value">1</span>
                 <p class="card-label">Students at Exams</p>
               </div>
             </div>
@@ -58,7 +58,7 @@
               <div class="card-icon-wrapper finishes">
                 <span class="material-icons">flag</span> </div>
               <div class="card-content">
-                <span class="card-value">023</span>
+                <span class="card-value">{{examFinishes}}</span>
                 <p class="card-label">Exam Finishes</p>
               </div>
             </div>
@@ -66,7 +66,7 @@
               <div class="card-icon-wrapper running">
                 <span class="material-icons">directions_run</span> </div>
               <div class="card-content">
-                <span class="card-value">015</span>
+                <span class="card-value">{{runningEvents}}</span>
                 <p class="card-label">Running Exams</p>
               </div>
             </div>
@@ -74,7 +74,7 @@
               <div class="card-icon-wrapper completed">
                 <span class="material-icons">check_circle</span> </div>
               <div class="card-content">
-                <span class="card-value">86%</span>
+                <span class="card-value">{{ completionRate * 10 | number:'1.2-2' }}%</span>
                 <p class="card-label">Completed Rate</p>
               </div>
             </div>
@@ -106,6 +106,7 @@
       <div class="modal-body">
         <form [formGroup]="quizForm">
           <div class="row g-3">
+           
             <div class="col-md-6">
               <label>Quiz Title</label>
               <input formControlName="title" class="form-control" />
@@ -220,3 +221,5 @@
     </div>
   </div>
 </div>
+
+

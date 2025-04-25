@@ -1,0 +1,29 @@
+.results-table-container {
+    padding: 20px;
+    background-color: #f7f9fc;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+  
+  .results-table th,
+  .results-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .results-table th {
+    background-color: #6200ea;
+    color: white;
+  }
+  
+  .results-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  

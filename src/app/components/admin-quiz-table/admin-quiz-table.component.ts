@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-quiz-table',
@@ -10,10 +11,9 @@ import { Component } from '@angular/core';
   styleUrl: './admin-quiz-table.component.css'
 })
 export class AdminQuizTableComponent {
-
   quizzes: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.http.get<any[]>('http://localhost:4000/quizzes').subscribe(data => {
@@ -21,10 +21,9 @@ export class AdminQuizTableComponent {
     });
   }
 
-  viewResults(quiz: any) {
-    console.log('Viewing results for quiz:', quiz.title);
-    alert(`Results would open for quiz: ${quiz.title}`);
-    // You can later open a modal or route to a detail page
+  viewResults(quiz: any): void {
+    const encodedTitle = encodeURIComponent(quiz.title);
+    this.router.navigate(['/view-results', encodedTitle]);
   }
-
 }
+

@@ -1,8 +1,384 @@
 .text-violet {
-    color: #7b1fa2 !important; /* Deep violet */
-  }
-  
-  .border-violet {
-    border-color: #7b1fa2 !important;
-  }
-  
+  color: #7b1fa2 !important; /* Deep violet */
+}
+
+.border-violet {
+  border-color: #7b1fa2 !important;
+}
+
+
+/* Basic Reset & Font */
+:host {
+display: block; /* Ensure component takes up space */
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-color: #f4f7fc; /* Light background for the whole page */
+color: #333;
+}
+
+button {
+font-family: inherit;
+cursor: pointer;
+border: none;
+background: none;
+padding: 0;
+}
+
+a {
+text-decoration: none;
+color: inherit;
+}
+
+/* Layout Container */
+.layout-container {
+display: flex;
+min-height: 100vh; /* Full viewport height */
+}
+
+/* Sidebar */
+.sidebar {
+width: 80px; /* Adjust as needed */
+background-color: #ffffff;
+padding-top: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+border-right: 1px solid #e0e0e0;
+box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-nav {
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+.nav-icon {
+color: #777;
+padding: 10px;
+border-radius: 8px;
+transition: background-color 0.2s ease, color 0.2s ease;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.nav-icon .material-icons {
+font-size: 28px;
+}
+
+.nav-icon:hover {
+background-color: #eef2f7;
+color: #3762e0;
+}
+
+.nav-icon.active {
+background-color: #e3eafc;
+color: #3762e0; /* Example active color */
+}
+
+/* Main Content Area */
+.main-content {
+flex-grow: 1;
+display: flex;
+flex-direction: column;
+}
+
+/* Topbar */
+.topbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 15px 30px;
+background-color: #ffffff;
+border-bottom: 1px solid #e0e0e0;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.topbar-left .logo-text {
+font-size: 1.5rem;
+font-weight: bold;
+color: #dd0031; /* Angular Red */
+}
+
+.topbar-right {
+display: flex;
+align-items: center;
+gap: 25px;
+}
+
+.search-container {
+display: flex;
+align-items: center;
+background-color: #f4f7fc;
+padding: 5px 10px;
+border-radius: 20px;
+min-width: 250px; /* Adjust as needed */
+}
+
+.search-icon {
+color: #888;
+margin-right: 8px;
+}
+
+.search-box {
+border: none;
+background: none;
+outline: none;
+width: 100%;
+font-size: 0.9rem;
+}
+
+.user-info {
+font-weight: 500;
+color: #555;
+}
+
+/* Dashboard Content Area */
+.dashboard-content {
+padding: 30px;
+flex-grow: 1;
+overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.stats-cards-row {
+display: flex;
+gap: 30px;
+margin-bottom: 30px;
+flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+/* Statistics Section */
+.stats-section {
+flex: 1; /* Adjust flex basis as needed */
+min-width: 350px; /* Prevent excessive shrinking */
+background-color: #ffffff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.stats-section h2 {
+margin-top: 0;
+margin-bottom: 20px;
+font-size: 1.2rem;
+color: #333;
+}
+
+.stats-details-container {
+display: flex;
+align-items: center;
+gap: 30px;
+}
+
+.chart-container {
+width: 180px; /* Adjust chart size */
+height: 180px;
+/* Style your chart container */
+}
+
+.chart-placeholder {
+width: 100%;
+height: 100%;
+border: 1px dashed #ccc;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #aaa;
+background-color: #f9f9f9;
+border-radius: 50%; /* Make placeholder circular */
+}
+
+.stats-text {
+line-height: 1.8;
+color: #555;
+}
+
+.stats-text .stat-value {
+font-weight: bold;
+color: #333;
+float: right; /* Align numbers to the right */
+margin-left: 15px;
+}
+
+/* Cards Grid Container */
+.cards-grid-container {
+  flex: 1.5; /* Adjust flex basis */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Gap between grid and create card */
+}
+
+.cards-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive grid */
+gap: 20px;
+}
+
+.stat-card {
+background-color: #ffffff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+display: flex;
+align-items: center;
+gap: 15px;
+}
+
+.card-icon-wrapper {
+width: 45px;
+height: 45px;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #fff;
+}
+/* Icon background colors (match the image) */
+.card-icon-wrapper.students { background-color: #e0f7fa; color: #00acc1; }
+.card-icon-wrapper.finishes { background-color: #e0f7fa; color: #00acc1; } /* Adjust color if needed */
+.card-icon-wrapper.running { background-color: #e0f7fa; color: #00acc1; } /* Adjust color if needed */
+.card-icon-wrapper.completed { background-color: #e8f5e9; color: #4caf50; }
+
+.card-icon-wrapper .material-icons {
+font-size: 24px;
+}
+
+.card-content {
+line-height: 1.3;
+}
+
+.card-value {
+display: block;
+font-size: 1.5rem;
+font-weight: bold;
+color: #333;
+}
+
+.card-label {
+font-size: 0.85rem;
+color: #777;
+margin: 0;
+}
+
+/* Create Exam Card */
+.create-exam-card {
+background-color: #ffffff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.create-exam-text h3 {
+margin: 0 0 5px 0;
+font-size: 1.1rem;
+color: #333;
+}
+
+.create-exam-text p {
+margin: 0;
+font-size: 0.9rem;
+color: #777;
+}
+
+.create-exam-button {
+background-color: #e3eafc;
+color: #3762e0;
+padding: 10px 15px;
+border-radius: 5px;
+font-weight: 500;
+display: flex;
+align-items: center;
+gap: 5px;
+transition: background-color 0.2s ease;
+}
+
+.create-exam-button:hover {
+background-color: #d1dafc;
+}
+
+/* Exam Table Section */
+.exam-table-section {
+margin-top: 30px; /* Ensure spacing from row above if it didn't wrap */
+background-color: #ffffff;
+border-radius: 8px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+overflow-x: auto; /* Allow horizontal scrolling on small screens */
+}
+
+.exam-table {
+width: 100%;
+border-collapse: collapse;
+}
+
+.exam-table th,
+.exam-table td {
+padding: 15px;
+text-align: left;
+border-bottom: 1px solid #eee;
+font-size: 0.9rem;
+white-space: nowrap; /* Prevent text wrapping */
+}
+
+.exam-table th {
+background-color: #f9fafc;
+font-weight: 600;
+color: #555;
+}
+
+.exam-table tbody tr:nth-child(even) {
+background-color: #fcfdff; /* Subtle zebra striping */
+}
+
+.exam-table tbody tr:hover {
+background-color: #f0f4fa;
+}
+
+.icon-button {
+color: #555;
+transition: color 0.2s ease;
+}
+
+.icon-button:hover {
+color: #3762e0;
+}
+
+.icon-button .material-icons {
+font-size: 20px;
+display: block; /* Prevents extra space below icon */
+}
+
+.view-results-link {
+color: #3762e0;
+font-weight: 500;
+transition: color 0.2s ease;
+}
+
+.view-results-link:hover {
+color: #2a4bbd;
+}
+
+/* Material Icons basic setup (ensure you've included the font link in index.html) */
+.material-icons {
+font-family: 'Material Icons';
+font-weight: normal;
+font-style: normal;
+font-size: 24px; /* Preferred icon size */
+display: inline-block;
+line-height: 1;
+text-transform: none;
+letter-spacing: normal;
+word-wrap: normal;
+white-space: nowrap;
+direction: ltr;
+/* Support for all WebKit browsers. */
+-webkit-font-smoothing: antialiased;
+/* Support for Safari and Chrome. */
+text-rendering: optimizeLegibility;
+/* Support for Firefox. */
+-moz-osx-font-smoothing: grayscale;
+/* Support for IE. */
+font-feature-settings: 'liga';
+}

@@ -10,6 +10,7 @@ import { StudentCompletedComponent } from './components/student-completed/studen
 import { StudentQuizPageComponent } from './components/student-quiz-page/student-quiz-page.component';
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
 import { RegisteredStudentListComponent } from './components/registered-student-list/registered-student-list.component';
+import { ViewRersultsComponent } from './components/view-rersults/view-rersults.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,6 +23,8 @@ export const routes: Routes = [
     { path: 'student/completed', component:StudentCompletedComponent,canActivate:[authGuard] },
     { path: 'create-exam', component: StudentCompletedComponent,canActivate:[authGuard] },
     { path: 'quiz-page/:id', component: StudentQuizPageComponent,canActivate:[authGuard] },
-    { path: 'registered-student-list', component: RegisteredStudentListComponent,canActivate:[authGuard] }
+    { path: 'registered-student-list', component: RegisteredStudentListComponent,canActivate:[authGuard] },
+    { path: 'registered-student-list', component: RegisteredStudentListComponent,canActivate:[authGuard] },
+    {path:'view-results/:examTitle',component:ViewRersultsComponent},
   
 ];

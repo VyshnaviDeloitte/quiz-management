@@ -202,6 +202,7 @@ export class AdminDashboardComponent implements OnInit {
 
   navigateToUserDetails()
   {
+     
       this.router.navigate(['/rst']);
   }
 

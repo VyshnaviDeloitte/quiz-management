@@ -24,7 +24,9 @@ export const routes: Routes = [
     { path: 'create-exam', component: StudentCompletedComponent,canActivate:[authGuard] },
     { path: 'quiz-page/:id', component: StudentQuizPageComponent,canActivate:[authGuard] },
     { path: 'registered-student-list', component: RegisteredStudentListComponent,canActivate:[authGuard] },
-    { path: 'registered-student-list', component: RegisteredStudentListComponent,canActivate:[authGuard] },
+    { path: 'rst', component: RegisteredStudentListComponent,canActivate:[authGuard] },
     {path:'view-results/:examTitle',component:ViewRersultsComponent},
+     {path:'view-results/:examTitle',component:ViewRersultsComponent},
+     {path:'student-details',component:StudentDetailsComponent}
   
 ];

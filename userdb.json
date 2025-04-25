@@ -5,76 +5,97 @@
       "email": "vyshnavi@gmail.com",
       "password": "vyshnavi",
       "role": "student",
-      "enrolledCourses": [
-        {
-          "examName": "Circles",
-          "date": "2025-04-24"
-        },
-        {
-          "examName": "Basics of Angular",
-          "date": "2025-04-24"
-        }
-      ],
+      "enrolledCourses": [],
       "completedCourses": [
         {
+          "examName": "Basics of Angular",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 2,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 0,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 2,
+          "date": "2025-04-24"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 2,
+          "totalScore": 2,
+          "date": "2025-04-25",
+          "quizId": "19b9"
+        },
+        {
           "examName": "Circles",
-          "score": 0,
-          "date": "2025-04-24"
-        },
-        {
-          "examName": "Basics of Angular",
-          "score": 0,
-          "date": "2025-04-24"
-        },
-        {
-          "examName": "Basics of Angular",
-          "score": 2,
-          "date": "2025-04-24"
-        },
-        {
-          "examName": "Basics of Angular",
-          "score": 0,
-          "date": "2025-04-24"
-        },
-        {
-          "examName": "Basics of Angular",
-          "score": 0,
-          "date": "2025-04-24"
-        },
-        {
-          "examName": "Basics of Angular",
-          "score": 0,
-          "date": "2025-04-24"
-        },
-        {
-          "examName": "Basics of Angular",
-          "score": 0,
-          "date": "2025-04-24"
-        },
-        {
-          "examName": "Basics of Angular",
-          "score": 0,
-          "date": "2025-04-24"
-        },
-        {
-          "examName": "Basics of Angular",
-          "score": 0,
-          "date": "2025-04-24"
-        },
-        {
-          "examName": "Basics of Angular",
-          "score": 0,
-          "date": "2025-04-24"
-        },
-        {
-          "examName": "Basics of Angular",
-          "score": 0,
-          "date": "2025-04-24"
+          "score": 1,
+          "totalScore": 2,
+          "date": "2025-04-25",
+          "quizId": "0529"
         },
         {
           "examName": "Basics of Angular",
           "score": 2,
-          "date": "2025-04-24"
+          "totalScore": 2,
+          "date": "2025-04-25",
+          "quizId": "19b9"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 2,
+          "totalScore": 2,
+          "date": "2025-04-25",
+          "quizId": "19b9"
+        },
+        {
+          "examName": "Basics of Angular",
+          "score": 0,
+          "totalScore": 2,
+          "date": "2025-04-25",
+          "quizId": "19b9"
         }
       ]
     },

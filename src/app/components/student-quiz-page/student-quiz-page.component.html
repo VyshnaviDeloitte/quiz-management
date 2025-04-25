@@ -1,3 +1,4 @@
+<!--student-quiz-page.html-->
 <div class="layout-container"> 
   <aside class="sidebar">
     <nav class="sidebar-nav">
@@ -109,8 +110,7 @@
   </div>
   <div class="modal-body">
     <p>Congratulations! Your score is:</p>
-    <div class="score-circle">{{ score }}</div>
-    <p>Out of {{ questions.length }}</p>
+    <div class="score-circle">{{ score }} / {{ questions.length }} </div>
     <p>You have completed the quiz.</p>
   </div>
   <div class="modal-footer">
@@ -123,3 +123,4 @@
     </button>
   </div>
 </ng-template>
+

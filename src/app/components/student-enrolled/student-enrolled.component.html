@@ -50,7 +50,7 @@
           <p class="mr-3">{{ course.date | date: 'dd MMM, yyyy' }}</p>
         </div>
         <div>
-          <p class="duration">{{ getDuration(course.examName) }} Hrs</p>
+          <p class="duration">{{ getDuration(course.examName) }} </p>
         </div>
         <div class="action">
           <button class="resume-btn" (click)="onStart(course.examName)">Start</button>

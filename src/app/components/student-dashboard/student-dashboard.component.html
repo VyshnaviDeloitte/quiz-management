@@ -1,3 +1,4 @@
+<!--student-dashboard html-->
 <div class="layout-container">
   <!-- Sidebar -->
   <aside class="sidebar">
@@ -21,7 +22,7 @@
         />
       </div>
       <div class="user-info">
-        {{ username | uppercase}}
+        {{ username }}
       </div>
     </header>
 
@@ -36,19 +37,22 @@
           >Enrolled {{ enrolledCount }}</span
         >
         <span class="tab" (click)="navigateTo('completed')"
-          >Completed {{ completedCount }}</span >
-          <select>
-            <option>Select date</option>
-          </select>
-          <select>
-            <option>Filter by subject</option>
-          </select>
+          >Completed {{ completedCount }}</span
+        >
       </div>
 
-     
+      <!-- Filters -->
+      <div class="filters">
+        <select>
+          <option>Select date</option>
+        </select>
+        <select>
+          <option>Filter by subject</option>
+        </select>
+      </div>
 
       <!-- Exam Cards -->
-      <div class="exam-grid">
+      <!-- <div class="exam-grid">
         <div class="exam-card" *ngFor="let quiz of quizzes">
           <div class="exam-header">
             <h3>{{ quiz.title }}</h3>
@@ -64,21 +68,64 @@
             <p><strong>Enrolled: </strong> {{ quiz.enrolled || 0 }}</p>
           </div>
           <button
-          class="btn btn-success mt-3"
-          (click)="startQuiz(quiz)"
-          [disabled]="!quiz.allowMultipleAttempts && isUserCompleted(quiz)"
-        >
-          Start
-        </button>
-        
-          <button
-  class="btn btn-primary mt-3"
-  (click)="enrollInQuiz(quiz)"
-  [disabled]="!quiz.allowMultipleAttempts && (isUserEnrolled(quiz) || isUserCompleted(quiz))"
->
-  Enroll
-</button>
+            class="btn btn-success mt-3"
+            (click)="startQuiz(quiz)"
+            [disabled]="!quiz.allowMultipleAttempts && isUserCompleted(quiz)"
+          >
+            Start
+          </button>
 
+          <button
+            class="btn btn-primary mt-3"
+            (click)="enrollInQuiz(quiz)"
+            [disabled]="
+              !quiz.allowMultipleAttempts &&
+              (isUserEnrolled(quiz) || isUserCompleted(quiz))
+            "
+          >
+            Enroll
+          </button>
+        </div>
+      </div> -->
+
+
+      <div class="exam-grid">
+        <div class="exam-card" *ngFor="let quiz of quizzes">
+          <div class="exam-header">
+            <h3>{{ quiz.title }}</h3>
+            <span [ngClass]="getDifficultyClass(quiz.difficulty)">
+              {{ quiz.difficulty || 'N/A' }} </span>
+          </div>
+
+          <div class="exam-info">
+            <p><strong>Start at: </strong> {{ quiz.startDate | date:'shortDate' }}</p> <p><strong>Duration: </strong> {{ quiz.duration }} mins</p>
+            <p><strong>Subject: </strong> {{ quiz.category || 'General' }}</p> <p><strong>Enrolled: </strong> {{ quiz.enrolled || 0 }}</p>
+            <p *ngIf="isUserCompleted(quiz)"> <strong>Status: </strong>
+                <span class="text-success">Completed</span>
+                <span *ngIf="quiz.allowMultipleAttempts"> (Multiple attempts allowed)</span>
+            </p>
+             <p *ngIf="isUserEnrolled(quiz) && !isUserCompleted(quiz)"> <strong>Status: </strong>
+                <span class="text-primary">Enrolled</span>
+            </p>
+          </div>
+
+          <div class="exam-actions mt-3 d-flex justify-content-start gap-2">
+              <button
+                class="btn btn-primary"
+                (click)="enrollInQuiz(quiz)"
+                [disabled]="!canEnroll(quiz)"> Enroll
+              </button>
+
+              <button
+                class="btn btn-success"
+                (click)="startQuiz(quiz)"
+                [disabled]="!canStart(quiz)"> Start
+              </button>
+          </div>
+
+        </div>
+         <div *ngIf="!quizzes || quizzes.length === 0" class="no-quizzes-message">
+            No active quizzes available at the moment.
         </div>
       </div>
     </section>
